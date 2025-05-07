@@ -10,6 +10,30 @@ variable "name" {
   type        = string
 }
 
+variable "public_endpoint" {
+  description = <<-EOT
+  An object defining the public endpoint configuration for the key vault, in the format:
+  ```
+  {
+    enabled = true
+    firewall = {
+      enabled    = true
+      ip_ranges  = ["90.80.70.60/24"]
+      subnet_ids = ["/subscriptions/.../virtualNetworks/vnet-example/subnets/ExampleSubnet"]
+  }
+  ```
+  The public endpoint is disabled by default.
+  EOT
+  type = object({
+    enabled = optional(bool, false)
+    firewall = optional(object({
+      enabled    = optional(bool, true)
+      ip_ranges  = optional(list(string), [])
+      subnet_ids = optional(list(string), [])
+    }))
+  })
+}
+
 variable "resource_group_id" {
   description = "The ID of the resource group into which resources will be deployed."
   nullable    = false
