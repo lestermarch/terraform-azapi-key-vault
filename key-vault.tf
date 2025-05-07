@@ -11,6 +11,8 @@ resource "azapi_resource" "key_vault" {
     properties = {
       enableRbacAuthorization   = true
       enableSoftDelete          = var.soft_delete.enabled
+      networkAcls               = local.public_endpoint_firewall
+      publicNetworkAccess       = local.public_endpoint_mode
       sku                       = local.sku
       softDeleteRetentionInDays = var.soft_delete.retention_days
       tenantId                  = data.azapi_client_config.current.tenant_id

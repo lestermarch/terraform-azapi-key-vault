@@ -35,6 +35,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_location"></a> [location](#input\_location) | The region into which resources will be deployed. | `string` | n/a | yes |
+| <a name="input_public_endpoint"></a> [public\_endpoint](#input\_public\_endpoint) | An object defining the public endpoint configuration for the key vault, in the format:<pre>{<br/>  enabled = true<br/>  firewall = {<br/>    enabled    = true<br/>    ip_ranges  = ["90.80.70.60/24"]<br/>    subnet_ids = ["/subscriptions/.../virtualNetworks/vnet-example/subnets/ExampleSubnet"]<br/>}</pre>The public endpoint is disabled by default. | <pre>object({<br/>    enabled = optional(bool, false)<br/>    firewall = optional(object({<br/>      enabled    = optional(bool, true)<br/>      ip_ranges  = optional(list(string), [])<br/>      subnet_ids = optional(list(string), [])<br/>    }))<br/>  })</pre> | n/a | yes |
 | <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The ID of the resource group into which resources will be deployed. | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | The name of the key vault. | `string` | `null` | no |
 | <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | A map of key-value pairs to use as resource tags. | `map(string)` | `null` | no |
