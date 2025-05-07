@@ -30,7 +30,7 @@ variable "sku" {
   validation {
     condition     = contains(["Standard", "Premium"], var.sku)
     error_message = "The SKU must be either 'Standard' or 'Premium'."
-  } 
+  }
 }
 
 variable "soft_delete" {
@@ -44,7 +44,7 @@ variable "soft_delete" {
   ```
   Soft delete is enabled for 30 days by default.
   EOT
-  type        = object({
+  type = object({
     enabled        = optional(bool, true)
     retention_days = optional(number, 30)
   })
